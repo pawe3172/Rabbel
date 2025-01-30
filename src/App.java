@@ -89,7 +89,7 @@ public class App {
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
         System.out.println(duration + "ms");
-
+        input.close();
     }
 
     static boolean exist(char[][] board, String word) {
