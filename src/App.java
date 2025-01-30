@@ -3,13 +3,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.regex.Pattern;
 
 public class App {
 
@@ -19,13 +18,6 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         Scanner input = new Scanner(System.in);
-
-        // char[][] board = {
-        // { 'r', 'f', 'a', 'a' },
-        // { 'r', 'a', 'k', 'i' },
-        // { 't', 't', 'e', 'i' },
-        // { 't', 'e', 'a', 'g' }
-        // };
         char[][] board = new char[BOARDSIZE][BOARDSIZE];
 
         for (int i = 0; i < BOARDSIZE; i++) {
@@ -78,13 +70,6 @@ public class App {
         } catch (IOException e) {
         }
 
-        // ArrayList<String> result = new ArrayList<>();
-        // TreeSet<String> result = new TreeSet<>();
-        // for (String word : filteredWords) {
-        // if (exist(board, word)) {
-        // result.add(word);
-        // }
-        // }
         TreeMap<Integer, TreeSet<String>> result = new TreeMap<>();
         for (String word : filteredWords) {
             if (exist(board, word)) {
@@ -93,9 +78,13 @@ public class App {
                 result.get(word.length()).add(word);
             }
         }
-        // Collections.sort(result);
-        System.out.println(result);
-        System.out.println(result.size());
+
+        int antalOrd = 0;
+        for (Map.Entry<Integer, TreeSet<String>> entry : result.entrySet()) {
+            System.out.println(entry.getKey() + " bokstäver: " + entry.getValue());
+            antalOrd += entry.getValue().size();
+        }
+        System.out.println("Antal ord: " + antalOrd);
 
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
