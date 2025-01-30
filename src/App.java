@@ -5,19 +5,44 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 public class App {
 
     static long startTime = System.currentTimeMillis();
+    public static final int BOARDSIZE = 4;
 
     public static void main(String[] args) throws Exception {
-        char[][] board = {
-                { 'r', 'f', 'a', 'a' },
-                { 'r', 'a', 'k', 'i' },
-                { 't', 't', 'e', 'i' },
-                { 't', 'e', 'a', 'g' }
-        };
+
+        Scanner input = new Scanner(System.in);
+
+        // char[][] board = {
+        // { 'r', 'f', 'a', 'a' },
+        // { 'r', 'a', 'k', 'i' },
+        // { 't', 't', 'e', 'i' },
+        // { 't', 'e', 'a', 'g' }
+        // };
+        char[][] board = new char[BOARDSIZE][BOARDSIZE];
+
+        for (int i = 0; i < BOARDSIZE; i++) {
+            System.out.print("Bokstäver för rad " + (i + 1) + ": ");
+            String letters = "";
+
+            while (true) {
+                letters = input.next().toLowerCase().trim().replaceAll(",", "");
+                if (letters.length() == BOARDSIZE && letters.matches("[a-zåäö]+")) {
+                    break;
+                }
+                System.out.print("Ange endast " + BOARDSIZE + " antal bokstäver från a till ö: ");
+            }
+
+            char[] lettersAsChar = letters.toCharArray();
+            for (int j = 0; j < BOARDSIZE; j++) {
+                board[i][j] = lettersAsChar[j];
+            }
+        }
 
         Set<Character> charSet = new HashSet<>();
         for (char[] row : board) {
