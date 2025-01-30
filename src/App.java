@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 public class App {
@@ -76,13 +78,22 @@ public class App {
         } catch (IOException e) {
         }
 
-        ArrayList<String> result = new ArrayList<>();
+        // ArrayList<String> result = new ArrayList<>();
+        // TreeSet<String> result = new TreeSet<>();
+        // for (String word : filteredWords) {
+        // if (exist(board, word)) {
+        // result.add(word);
+        // }
+        // }
+        TreeMap<Integer, TreeSet<String>> result = new TreeMap<>();
         for (String word : filteredWords) {
-            if (exist(board, word) && !result.contains(word)) {
-                result.add(word);
+            if (exist(board, word)) {
+                if (!result.containsKey(word.length()))
+                    result.put(word.length(), new TreeSet<String>());
+                result.get(word.length()).add(word);
             }
         }
-        Collections.sort(result);
+        // Collections.sort(result);
         System.out.println(result);
         System.out.println(result.size());
 
