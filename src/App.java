@@ -13,10 +13,10 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         char[][] board = {
-                { 'd', 'i', 'a', 'r' },
-                { 'd', 'e', 'i', 'g' },
-                { 'l', 'a', 'e', 'a' },
-                { 'r', 'v', 'i', 'n' }
+                { 'r', 'f', 'a', 'a' },
+                { 'r', 'a', 'k', 'i' },
+                { 't', 't', 'e', 'i' },
+                { 't', 'e', 'a', 'g' }
         };
 
         Set<Character> charSet = new HashSet<>();
@@ -27,7 +27,7 @@ public class App {
         }
 
         ArrayList<String> filteredWords = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader("rabbel.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("wordlist.txt"))) {
 
             String text = br.readLine();
             String[] words = text.toLowerCase().split(",");
